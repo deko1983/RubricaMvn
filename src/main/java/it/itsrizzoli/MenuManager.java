@@ -28,15 +28,30 @@ public class MenuManager {
                     rubrica.addContatto(formNuovaPersona(scanner));
                     break;
                 case 2:
-                    formRicercaPerCognome(rubrica);
+                    formRicercaPerCognome(rubrica, scanner);
                     System.out.println("Premi 'q' per tornare al menù principale");
                     keyPressed = scanner.next().charAt(0);
                     if (keyPressed == 'q')
                         break;
                 case 3:
-                    System.out.println("Hai scelto l'opzione 3: Esegui Azione 3");
-                    break;
+                    formRicercaPerNome(rubrica, scanner);
+                    System.out.println("Premi 'q' per tornare al menù principale");
+                    keyPressed = scanner.next().charAt(0);
+                    if (keyPressed == 'q')
+                        break;
                 case 4:
+                    formRicercaPerIniziale(rubrica, scanner);
+                    System.out.println("Premi 'q' per tornare al menù principale");
+                    keyPressed = scanner.next().charAt(0);
+                    if (keyPressed == 'q')
+                        break;
+                case 5:
+                    formRicercaPerPattern(rubrica, scanner);
+                    System.out.println("Premi 'q' per tornare al menù principale");
+                    keyPressed = scanner.next().charAt(0);
+                    if (keyPressed == 'q')
+                        break;
+                case 9:
                     rubrica.printAll();
                     System.out.println("Premi 'q' per tornare al menù principale");
                     keyPressed = scanner.next().charAt(0);
@@ -58,8 +73,43 @@ public class MenuManager {
         scanner.close();
     }
 
-    private void formRicercaPerCognome(Rubrica rubrica) {
-        Scanner scanner = new Scanner(System.in);
+    private void formRicercaPerPattern(Rubrica rubrica, Scanner scanner) {
+        System.out.print("Inserisci pattern da ricercare: ");
+        String pattern = scanner.nextLine();
+
+        Persona[] rubricaFiltrata = rubrica.cercaContattiPerPattern(pattern);
+
+        if (rubricaFiltrata != null)
+            Rubrica.print(rubricaFiltrata);
+        else
+            System.out.println("Nessun risultato trovato");
+    }
+
+    private void formRicercaPerIniziale(Rubrica rubrica, Scanner scanner) {
+        System.out.print("Inserisci pattern da ricercare: ");
+        char i = scanner.nextLine().charAt(0);
+
+        Persona[] rubricaFiltrata = rubrica.cercaContattiPerIniziale(i);
+
+        if (rubricaFiltrata != null)
+            Rubrica.print(rubricaFiltrata);
+        else
+            System.out.println("Nessun risultato trovato");
+    }
+
+    private void formRicercaPerNome(Rubrica rubrica, Scanner scanner) {
+        System.out.print("Inserisci nome da ricercare: ");
+        String nome = scanner.nextLine();
+
+        Persona[] rubricaFiltrata = rubrica.cercaContattiPerNome(nome);
+
+        if (rubricaFiltrata != null)
+            Rubrica.print(rubricaFiltrata);
+        else
+            System.out.println("Nessun risultato trovato");
+    }
+
+    private void formRicercaPerCognome(Rubrica rubrica, Scanner scanner) {
         System.out.print("Inserisci cognome da ricercare: ");
         String cognome = scanner.nextLine();
 
@@ -78,7 +128,9 @@ public class MenuManager {
         System.out.println("1. Aggiungi contatto");
         System.out.println("2. Ricerca per cognome");
         System.out.println("3. Ricerca per nome");
-        System.out.println("4. Vedi tutto");
+        System.out.println("4. Ricerca per iniziale");
+        System.out.println("5. Ricerca per pattern");
+        System.out.println("9. Vedi tutto");
         System.out.println("0. Esci");
     }
 
