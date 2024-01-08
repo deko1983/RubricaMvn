@@ -18,12 +18,14 @@ public class MenuManager {
             System.out.print("Inserisci il numero dell'opzione desiderata: ");
             choice = scanner.nextInt();
 
+            scanner.nextLine();
+
             // pulisco la console
             clearConsole();
             // Gestione della scelta dell'utente
             switch (choice) {
                 case 1:
-                    rubrica.addContatto(formNuovaPersona());
+                    rubrica.addContatto(formNuovaPersona(scanner));
                     break;
                 case 2:
                     formRicercaPerCognome(rubrica);
@@ -86,8 +88,8 @@ public class MenuManager {
         System.out.flush();
     }
 
-    private Persona formNuovaPersona() {
-        Scanner scanner = new Scanner(System.in);
+    private Persona formNuovaPersona(Scanner scanner) {
+        //Scanner scanner = new Scanner(System.in);
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
 
