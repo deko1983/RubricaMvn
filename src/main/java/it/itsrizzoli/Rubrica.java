@@ -20,10 +20,16 @@ public class Rubrica implements Serializable {
             if (elenco[i] != null)  {
                 System.out.println("Contatto " + i );
                 System.out.println(elenco[i] + "\n");
-            }
-                
+            }                
         }
-            
+    }
+
+    public static void print(Persona[] rubricaFiltrata)  {
+        for (int i=0; i < rubricaFiltrata.length; i=i+1)  {
+            if (rubricaFiltrata[i] != null)  {
+                System.out.println(rubricaFiltrata[i] + "\n");
+            }                
+        }
     }
 
     public void addContatto(Persona contatto)  {
@@ -41,7 +47,12 @@ public class Rubrica implements Serializable {
     }
 
     public Persona cercaContattoPerNome(String nome)  {
-        return null;   
+         for (int i=0; i < elenco.length; i=i+1)  {
+            if (elenco[i] != null && elenco[i].nome.equalsIgnoreCase(nome))
+                return elenco[i];
+        }
+
+        return null;  
     }
 
     public Persona[] cercaContattiPerCognome(String cognome)  {

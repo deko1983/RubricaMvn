@@ -1,3 +1,5 @@
+package it.itsrizzoli;
+
 import java.io.Serializable;
 
 public class Persona implements Serializable {

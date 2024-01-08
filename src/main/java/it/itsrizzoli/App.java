@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 public class App {
 
     private static String FILE_NAME = "rubrica.ser";
+    
     public static void main(String[] args) throws Exception {
         
         MenuManager menuManager = new MenuManager();

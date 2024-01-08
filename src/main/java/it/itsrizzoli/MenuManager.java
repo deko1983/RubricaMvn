@@ -1,3 +1,5 @@
+package it.itsrizzoli;
+
 import java.util.Scanner;
 
 public class MenuManager {
@@ -8,6 +10,7 @@ public class MenuManager {
     
         int choice;
         do {
+            char keyPressed;
             // Visualizzazione delle opzioni del menu
             displayMenu();
 
@@ -23,15 +26,18 @@ public class MenuManager {
                     rubrica.addContatto(formNuovaPersona());
                     break;
                 case 2:
-                    System.out.println("Hai scelto l'opzione 2: Esegui Azione 2");
-                    break;
+                    formRicercaPerCognome(rubrica);
+                    System.out.println("Premi 'q' per tornare al menù principale");
+                    keyPressed = scanner.next().charAt(0);
+                    if (keyPressed == 'q')
+                        break;
                 case 3:
                     System.out.println("Hai scelto l'opzione 3: Esegui Azione 3");
                     break;
                 case 4:
                     rubrica.printAll();
                     System.out.println("Premi 'q' per tornare al menù principale");
-                    char keyPressed = scanner.next().charAt(0);
+                    keyPressed = scanner.next().charAt(0);
                     if (keyPressed == 'q')
                         break;
                 case 0:
@@ -48,6 +54,20 @@ public class MenuManager {
 
         // Chiudi lo scanner
         scanner.close();
+    }
+
+    private void formRicercaPerCognome(Rubrica rubrica) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Inserisci cognome da ricercare: ");
+        String cognome = scanner.nextLine();
+
+        Persona[] rubricaFiltrata = rubrica.cercaContattiPerCognome(cognome);
+
+        if (rubricaFiltrata != null)
+            Rubrica.print(rubricaFiltrata);
+        else
+            System.out.println("Nessun risultato trovato");
+
     }
 
     // Metodo per visualizzare le opzioni del menu
